@@ -32,6 +32,8 @@
     if (!/^[0-9a-f]{32}$/.test(key)) {
       document.getElementById('ok').hidden = true;
       document.getElementById('bad').hidden = false;
+      document.getElementById('open').parentNode.hidden = true;
+      document.getElementById('open-en').parentNode.hidden = true;
       return;
     }
     var appLink = 'csaladitervezo://join?key=' + key;
