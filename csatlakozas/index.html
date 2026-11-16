@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Csatlakozás – Familia</title>
+<link rel="icon" href="/icon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <header><img src="/icon.png" alt=""><a href="/">Familia</a></header>
+  <h1>Meghívtak egy családba</h1>
+  <p id="ok">Koppints a gombra, és a Familia megnyitja a csatlakozást. A család egyik felnőtt tagja ezután beenged.</p>
+  <p id="bad" hidden>Ez a link hiányos. Kérd meg a családtagodat, hogy küldjön új meghívót.</p>
+  <p><a class="button" id="open" href="/">Megnyitás a Familiában</a></p>
+  <div class="card">
+    <p><strong>Még nincs fent az app?</strong> Telepítsd a meghívó üzenetben kapott TestFlight linkről, lépj be, majd koppints újra erre a linkre. A meghívó 24 óráig érvényes.</p>
+  </div>
+  <h2 lang="en">You've been invited to a family</h2>
+  <p lang="en">Tap the button to open Familia and ask to join. An adult in the family then lets you in. If the app isn't installed yet, install it from the TestFlight link in the invite, sign in, then tap this link again. The invite lasts 24 hours.</p>
+  <p lang="en"><a class="button" id="open-en" href="/">Open in Familia</a></p>
+  <nav>
+    <a href="/adatvedelem/">Adatvédelmi tájékoztató</a>
+    <a href="/privacy/" lang="en">Privacy policy</a>
+  </nav>
+</main>
+<script>
+  (function () {
+    var key = location.hash.replace('#', '');
+    if (!/^[0-9a-f]{32}$/.test(key)) {
+      document.getElementById('ok').hidden = true;
+      document.getElementById('bad').hidden = false;
+      return;
+    }
+    var appLink = 'csaladitervezo://join?key=' + key;
+    document.getElementById('open').href = appLink;
+    document.getElementById('open-en').href = appLink;
+    location.href = appLink;
+  })();
+</script>
+</body>
+</html>
