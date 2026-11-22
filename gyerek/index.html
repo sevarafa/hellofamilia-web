@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Gyerek telefonja – Familia</title>
+<link rel="icon" href="/icon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <header><img src="/icon.png" alt=""><a href="/">Familia</a></header>
+  <h1>Gyerek telefonjának csatlakoztatása</h1>
+  <p id="ok">Koppints a gombra, és a Familia megnyitja a belépést a kóddal.</p>
+  <p id="bad" hidden>Ez a kód hiányos. Kérj új kódot a szülő telefonján.</p>
+  <p><a class="button" id="open" href="/">Megnyitás a Familiában</a></p>
+  <div class="card">
+    <p><strong>Még nincs fent az app?</strong> Telepítsd, majd olvasd be újra a kódot. A kód 10 percig érvényes.</p>
+  </div>
+  <h2 lang="en">Link a child's phone</h2>
+  <p lang="en">Tap the button to open Familia and sign in with the code. If the app isn't installed yet, install it and scan the code again. The code lasts 10 minutes.</p>
+  <p lang="en"><a class="button" id="open-en" href="/">Open in Familia</a></p>
+  <nav>
+    <a href="/adatvedelem/">Adatvédelmi tájékoztató</a>
+    <a href="/privacy/" lang="en">Privacy policy</a>
+  </nav>
+</main>
+<script>
+  (function () {
+    var code = location.hash.replace('#', '');
+    if (!/^[0-9]{8}$/.test(code)) {
+      document.getElementById('ok').hidden = true;
+      document.getElementById('bad').hidden = false;
+      document.getElementById('open').parentNode.hidden = true;
+      document.getElementById('open-en').parentNode.hidden = true;
+      return;
+    }
+    var appLink = 'csaladitervezo://child-sign-in?code=' + code;
+    document.getElementById('open').href = appLink;
+    document.getElementById('open-en').href = appLink;
+    location.href = appLink;
+  })();
+</script>
+</body>
+</html>
